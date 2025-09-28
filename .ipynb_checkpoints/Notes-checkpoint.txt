@@ -1,0 +1,490 @@
+  NLP.......
+
+-> interaction betwen human and cmputer
+->Idea is  machine understand and communicate with natural language
+
+What is natural language
+-> evolve naturally in human through use and repetation such as speech and sign
+
+Need for NLP
+->
+
+Real World Application
+-> Contextual Advertisements(targeted ads)
+->Email Clients (spam,smart reply)
+->Social media (removing adult content,option mining)
+->Search Engines
+-> chatbots
+
+Common NLP Tasks
+->Text/Document classification
+->Sentiment Analysis
+->Information Retrival
+->Parts of speech tagging (what kind of word is noun pronoun adjactive etc)
+->Language detection and machine translation
+-> Conversational agents
+->Knowledge graph and QA system
+->Text Summarization
+->Topic Modelling
+->Text Generation
+->Spell checking and grammer correction
+-> text parsing
+->speech to text
+
+Approaches to NLP (how we achive it)
+->Heuristic methods
+(Rule based approaches like regular expressions, wordnet,open mind common sense community)
+-> ml methods
+(for open ended problems rules made internally)
+(algo-> naive bayes, logistic regression,svm,lda, hidden markov model)
+-> deep learning methods
+(adv->retain sequential informationl, feature genration are automated )
+(architecture-> RNN,LSTM,GRU/CNN,Transformers,Autoencoders)
+
+
+Challenges in NLP
+->Ambiguity (many meaning of words)
+->Contextual Words
+->Slang (piece of cake)
+->synonyms
+->irony , sarcasm and tonal diff
+->Spelling Errors
+-> Creativity (poem , script , dialogue)
+-> Diversity
+
+NLP Pipeline
+-> set of step for building end to end nlp sw
+-> steps:
+   1. Data Acquistion
+   2. Text Preparation (text cleanup, basic and advance preprocessing)
+   3. feature engineering (convert to no)
+   4. modelling (model building then evaluation)
+    5. Deployment (deployment -> monitoring -> model update)
+
+
+Data Acquisiton
+-> if the data is available in the organisation then: 
+   1. we have direct csv file no data acquistion
+   2. Data in organisation database then data      
+      enginerring team give the running data          to us
+   3. if we have less data then we do data angument ie generate fake data using technique like synonms(use synnonyms of word) , bigram flip (eg on the -> the on ),
+  back translate, add noise
+
+-> if data is available to other then:
+  1. public dataset
+  2. Web scrapping (beautiful scoup)
+  3. Api (rapidapi.com)
+  4. pdf ,image, audio data
+ 
+-> if no data is available then:
+    manual labling to data
+
+
+Text Preprocessing
+->CLeaning: html tag cleaning 
+   (<h2>/ hello <h2>/ by regular expression)
+   emojis to unicode which machine undstnd
+  spelling checking by TextBlob
+ 
+-> Basic Preprocessing:
+    1.tokenization (sentence and word token)
+    2. stop word removal
+    3. stemning (dance dancing dances ->      dance)
+    4. removing digit, punctions
+    5.  lowercasing
+    6. language detection
+
+-> Advance Preprocessing:
+    1. Part of speech tagging  (I -> noun)
+     2. Parsing  (we can't do parsing if we do stop word removal )
+    3. Coreference resolution   (darshan and I are refering to same person)
+
+
+Feature Engineering
+->text to number conversion
+->tchnique like bag of word, word2vec, tfidf,ome depend on situation
+-> eg of bag of word 
+   (50000,2) review_text and sentiment(0 or 1)
+   now we convert it to (50000,4)
+    no of +ve word  no of -ve word , neutral word , sentiment and apply ml model 
+
+-> in ml we do feature eng but in dl it done by machine known as embeddings
+
+
+Modelling
+->Applying Model: depend on amount of data and nature of problem
+    1. Heuuristic (when less data, eg spam email by same email or sell word in email) 
+     2. ML Algo (we can merge heurstic approach to ml by making it feature for eg make a feature of from_spammer in which if it mail is from spam id then 1 if not  then 0)
+    3. DL algo  (large data, Transfer learning ie already trained model )
+   4. Cloud API (already available solutions)
+
+->Evalution : 
+     1. Intrinsic  (use metrices like f1 accuracy recall ie technical )
+      2. Externsic (user evalution high level ie business level )
+    Perpelixity is inntternsic parameter which is a number show how confuse our nlp model is
+
+
+ Deployment
+->deploy:
+   1. APi (microservice) 
+   2. Chatbot 
+  ex spam filter is part of larger application so it is microservice which access by the api call to our spam filter.
+
+-> Monitering:
+  dashboard of all metrices
+
+-> Update:
+ if any changes 
+
+
+
+NLP jupiter notebook
+we need to remove punction because if we don't then either it consider as a single token which increase the size
+or it merge with word 
+eg Hello ! how are you ?
+-> Hello, ! , how , are , you , ? => more token generated 
+-> Hello !, how , are,  you?  => Hello and Hello! are not same which confuse model
+
+
+
+challenges in tokenizations are 
+1. Prefix
+2. Suffix
+3. infix
+4. exceptions
+eg. $10 ->  $ ,10
+    10 km -> 10 ,km should tokenize like this
+   which is defficult for algo
+
+
+ infection in grammer is the modification of word to 
+ express diffenet grammatical catoegiers
+ eg. walk-> walking waked waks
+      do -> undoable
+Steamming is process of reducing iniflection in word to their root forms such as mapping a group of word to the same stem even if the stem itself is not valid word in language
+
+Steaming is most use in Information Retrival system
+like google search engine where when we search 
+word like fish fishing fishnet it give a mix ans
+
+
+Lemitization and Stemming both find the root word but in stemming the root word may not be a valid  english language word 
+ex probalby => prob
+but in lemitization it is always valid word
+
+If you don't want to show output ton the user and need faster speed then use stemming.
+
+ Lemitization unlike stemming reduce the inflected word propley ensuring that the root word belong to the language.
+In emitization root word is called Lemma
+
+
+Text Vectorization= feature extration from text
+->it is very neccesary step 
+-> it is very difficult task 
+-> Techniques like
+   OHE, BOW, ngrams,TfIDF ,custom feature 
+   use for ml feature extratrction
+
+
+Corpus => all the combine  of word in dataset is called corpus done by concatination.
+ie agar saare words ko jod denge daaset k to corpus banega
+
+Vocabulary=> All the unqiue word of corpus is vocabulary
+
+Document => Individual row of dataset
+
+word=> individual word in document
+
+
+
+ONE HOT ENCODING
+ D1= people watch campusx
+D2= campusx watch campusx
+D3=people wite comment
+D4= campusx write comment
+
+Corpus=> people watch campusx campusx watch campusx people write comment campus x write comment
+
+Vocubulary=> 5
+ people watch campusx write comment
+  1           0          0               0     0 
+
+so D1=[ [1,0,0,0,0], [0,1,0,0,0], [0,0,1,0,0]]
+
+Advantage-> it is easy to implement and very intutive 
+disadvantage-> 1.sparsity (if vocab is very big then each word represent by very large sparse array eg v=50000 the every word has single one and 50000 zeros )
+
+   2. if not fixed input size then ml algo don't work eg if D2 has 4 word then its size be (4,5) where D1 and D3 is (3,5) 
+
+  3. out of vocabulary problem when during prediction if any word come which not in training then it can't be transform
+
+  4. No capturing of semantic meaning eg
+            walk    shoe   bottle
+walk    [  1         0         0      ]
+shoe    [   0        1         0      ]
+bottle  [   0        0          1      ]
+
+    when we plot these vector then all thse there are at equivi distance but walk and shoe are related so they should have less distance in between as compure to bottle.
+ ie we are converting te word in number but we cab't capturing the meaning
+
+
+Bag of words
+->work best in text classification problem ie text and output format  
+-> order of word not matter occurance and frequency of word matter.
+-> context not matter but it covered
+-> har word kitni baar aa rha hai  
+-> Countvect is use in skitlearn for this.
+
+               Text                               output/class
+D1= people watch campusx           1
+D2= campusx watch campusx         1
+D3=people wite comment             0
+D4= campusx write comment        0
+
+  vocabulary(v)=5 
+    occurance of word in document
+       people watch campus write comment
+D1     1          1          1          0          0
+D2     0           1          2         0          0
+D3    1            0         0          1           1
+D4    0           0          1           1          1
+
+ when we plot these vector in n space here 5d space then similar vector have less distance and dismiilar have more distance.
+this distance is calculate by angle between vector.  
+
+-> Advantage= 1. simple and intutive 
+      2. Always fix size output vector
+       3. Out of vocubalary not a issue
+      4. capture the simentic relation little
+
+-> Disadvantage = 1. Sparcity
+        2. OOV is ignored ,ie the word may contain some information
+       3. Ordering not considered in bag of word but in real life it matter ie sentence from left to right
+      4. changes cant handle ex
+This is a very good movie
+this is not a  good movie
+
+voc= this movie is very good not
+ d1      1      1       1   1      1       0
+  d2    1       1       1   0      1      1
+  almost similar so near in vector space ie 4 dimension have same and 2 dimension is different 
+
+bag of word put these two sentence near in space it assume both contain same meaning as only not is different but in real life these two are opposite meaning 
+
+
+Bag of ngram
+->rether than single word to make vocubalry we take n words from 2 to n continues word
+
+-> Bag of bigram
+
+               Text                               output/class
+D1= people watch campusx           1
+D2= campusx watch campusx         1
+D3=people wite comment             0
+D4= campusx write comment        0
+
+  vocubalry= people watch, watch campusx , 
+ campux watch , people write , write comment , campusx write 
+   ie v=6
+
+       pw    wc     cw       p,wr      wr,c   c,wr
+D1    1      1       0           0             0      0   
+D2     0      1      1           0            0        0 
+D3    0       0       0         1             1        0
+D4     0       0        0       0              1        1
+
+similary bag of trigram, we cant build quadgram here 
+
+-> Bag of word is unigram ie n_gram value 1
+-> Countvector has a parameter ngram_range whos defult value is 1 ie bag of word 
+for bigram set it 2
+ 
+-> Advantage of ngram=
+This is a very good movie
+this is not a  good movie
+
+voc= bigram
+thismovie,movieis, isvery,verygood,isnot, ng
+   1                  1          1           1         0       0 
+    1                 1           0          0          1       1
+
+  4 dimension are differnet some more distance in vector space
+
+ 1. Able to capture semantic meaning of sentence 
+2. easy to implement
+
+-> Disadvantage=
+1. Dimensionality of vac abulary increase as increase the n which slow down the algo and it become slower
+2. OOV still a problem we just ignore the word
+
+
+Tf-Idf (Term frequence inverse document frequency)
+-> in all the previous method we gave the same importance/weighteges to all the words  ie if it pesent then 1 else 0  
+-> But ini Tf-Idf we assign diffent weightegs to diff word by logic 
+  "if any word is coming in any document frequently but in the corpus(other document ) it come rarly then it has very high importance for that document"
+
+
+               Text                               output/class
+D1= people watch campusx           1
+D2= campusx watch campusx         1
+D3=people wite comment             0
+D4= campusx write comment        0
+
+
+->Tf(t,d) = (number of occurance of term t in document d) / (total number of term in that document d)
+-> tf is vo word uss document mai kitne baa raa rha hai,if tf jyada vo word uss dcument mai jyada aaya 
+ -> 0<TF<1 similar to probabiltiy
+eg
+  tf(people,d1)=1/3
+  tf(campus,d2)=2/3
+
+-> Idf(t)= loge[ (Total number of document in the corpus) / (number of document with term t in them)]
+   -> idf(campusx)=loge(4/3)  total 4 document and 3 document have word campusx
+   -> if word is more frequent in carpus thenits idf is lower if it in all document then idf =loge(4/4)=> loge(1)=> 0
+
+       " TF-IDF= Tf * Idf  "
+
+-> vocab
+    people   watch  campusx   write  comment
+D1  1/3*0.3  1/3*0.3    1/3*0.5   0       0
+
+-> in skitlearn tfidfvectorize the idf formula is 
+ little different 
+  idf =log()  +1
+   1 is added so the most freqent word whose value is 0 is not completely ignored and can give some contribution
+
+-> why we take log when we calculate idf ?
+   => if word is very rare then idf is very large and when large number multiply with tf  then there is no importance of tf  as it a large number so we take log for normalize 
+
+ -> Advantage:
+    1. information retrival 
+
+-> Disadvantage:
+  1. sparisity
+   2. OOV problem
+   3. Dimensation
+  4. cant capture semantic relationship
+ 
+
+
+ Word Embeddings (word to vector)
+->in nlp WE is term used to represention of word in text analysis , typically in form of real valued vector that encode the meaning of word such as closer in the vector space are expectd to similar meaning
+
+->bag of word , tfidf , word2vec all are word embedding techniques
+
+->Types of word Embedding
+ 1. Frequency based (bag of word , tfidf , glove)
+2. Prediction based (word2vec-> deep learning method )
+
+
+Word2Vec
+-> capture semmantic meaning
+   eg joy and happy are near
+->low deminsion vector size  
+-> dense vector ie most number are non zero which reduce overfitting less sparcity
+
+-> you can use either pretrain word2vec model or we can train it on over model
+
+-> import gensim 
+  form gensim.model import Word2vec, keyedvectors
+
+-> model.most_similar(word)=> give most similar words to that word
+-> model.similarity(word,word2)=> give the number how similar they are between -1 to 1
+
+->model.doesnt_match([word,word2,..])
+ give the odd word 
+
+-> can perform all vector operation here
+
+-> how W2V work ?
+feature are genereted by automation and according to that featues value are assign to words.
+ex 5 words king queen man women monkey
+now for these words let features are gender wealth power weight and speak.
+so table become
+
+             king  queen   man   woman   monkey
+gender   1          0          1         0              1
+wealth     1           1        0.3      0.3            0
+power       1         0.7     0.2        0.2           0
+weight    .8           .4      .6          .5             .3
+speak       1           1         1           1            0
+
+so king become [1,1,1,0.8,1]
+    
+we can perform vector operation like
+king -man + woman should give queen
+ [1,1,1,0.8,1] -[1,0.3,0.2,0.6,1] +[0,.3,.2,.5,1]
+= [0,1,1,0.7,1] close to queen
+
+-> in DL neural network create these feature by themself and we don't know what they feature are we just know the value.
+ 
+-> the underlying assumption of W2V is that two words sharing similar contexts aslo share a similar meaning and consequently a similar vector representation from the model.
+
+-> Type of word2vec artictecture
+1. CBOW
+2. Skip-gram
+
+both are shallow neural network ie less layer.
+
+CBOW (continue bag of word)
+->we can't directly convert word to vector in W2V so what we do is:
+we create a dummy problem and when we try to solve that problem we get the vector as a byproduct.
+ 
+in notes (CBOW and skipgram)
+
+-> when smaller data use cbow
+when larger data use skipgram
+
+
+
+Text Classification
+->what is clasification => supervised ml task based on data we need to insert into different bucket or class. 
+ex email spam or not
+-> when data is textual then it is text classification
+
+-> Type of Text Classification
+1. Binary (2 class)
+2. Multiclass (ex category of news)
+3. multilabel ( single ip multiple op eg single news can be in sports and breaking news seaction)
+
+-> Application
+1. Email filtering
+2. customer support
+3. Sentiment Analysiis(sentiment positive or negative ie review)
+4.Language detection(google  translate)
+5.Fake news detection
+
+-> The pipeline:
+data acquistion->text preprocessing->text vectorization (bow,tfidf,word2vec)->modeling(ml algo like naive bayes and random forest in DL algo like RNN CNN BERT)-> Evalution(accuracy ,confussion metrics) -> Deploy
+
+-> Different Approaches:
+1. Heurstiic 
+2. Using API
+3. ML
+4. DL  
+
+
+
+
+POS Tagging (Part of speech)
+-> i am darshan
+  i-> noun am -> adjective, darshan->noun
+
+-> POS is preprocessing step
+->Application of POS:
+  1. Named Entity Recognization
+    (Information Retrival)
+  2. Question Answering systen
+  3. Word sense disambigaution
+  (eg. i left room, left of the room -> meaning of left is differnet foeach sentitence)
+ 4.chatbot
+
+-> How POS Tegging Work ?
+    =>  in notes. (hidden markov and viterbi algo)
+    
+
+" Man Entity Relation and Topic Modeling are study after Deep Learning"
+
+
+
+ 
